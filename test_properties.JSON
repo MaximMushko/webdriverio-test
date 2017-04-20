@@ -1,0 +1,15 @@
+{
+  "yandex": {
+    "username": "dart-maximus",
+    "password": "AveManchins1924"
+  },
+  "google": {
+    "username":"maxmushko@gmail.com",
+    "password":"AveManchins1924"
+  },
+  "recipients": [
+  "mmushko@griddynamics.com"
+  ],
+  "subject": "Hello",
+  "message":"Hello from webdriver!!!!!"
+}

@@ -1,0 +1,28 @@
+{
+  "name": "webdriverio-test",
+  "version": "1.0.0",
+  "description": "Repository to test web driver IO framework.",
+  "main": "index.js",
+  "dependencies": {
+    "webdriverio": "^4.6.2"
+  },
+  "devDependencies": {
+    "selenium-standalone": "^6.2.0",
+    "wdio-mocha-framework": "^0.5.9",
+    "webdriverio": "^4.6.2"
+  },
+  "scripts": {
+    "selenium-start": "./node_modules/.bin/selenium-standalone start",
+    "test": "wdio"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MaximMushko/webdriverio-test.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MaximMushko/webdriverio-test/issues"
+  },
+  "homepage": "https://github.com/MaximMushko/webdriverio-test#readme"
+}

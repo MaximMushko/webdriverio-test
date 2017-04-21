@@ -9,9 +9,6 @@ var Yandex_mail_page = require('../pageobjects/yandex_objects/yandex_mail_page')
 var Google_started_page = require('../pageobjects/google_objects/google_started_page');
 var Google_mail_page = require('../pageobjects/google_objects/google_mail_page');
 var config = require('../test_properties.json');
-var client = webdriverio.remote({});
-var yandex_mail_page = new Yandex_mail_page();
-
 
 describe('test yandex mail receive', function() {
 	beforeEach(function(callback) {

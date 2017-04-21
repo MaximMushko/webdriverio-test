@@ -8,7 +8,9 @@
   },
   "devDependencies": {
     "selenium-standalone": "^6.2.0",
+    "wdio-allure-reporter": "^0.1.2",
     "wdio-mocha-framework": "^0.5.9",
+    "wdio-selenium-standalone-service": "0.0.8",
     "webdriverio": "^4.6.2"
   },
   "scripts": {

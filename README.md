@@ -27,17 +27,17 @@ $ npm install webdriverio --save-dev
 ```
 
 5. Run wdio script in terminal and you can see wdio config.
-    1. "Where do you want execute your test?". - on my local machine
-    2. "What framework do you want to use?" - mocha
-    3. "Shall i install framework udapter to you?" - Yes
-    4. "Where are you test specs located?" - ./test
-    5. "Which report do you want to use?" - spec
-    6. "Shall i install reporter framework?"  - yes
-    7. "Do you want to add a service to your test setup?" - selenium-standalone
-    8. "Shall i install a service?" - yes
-    9. "Level of logging?" - command
-    10. "In which directory should screenshots gets saved if a command falls?" - ./errorShots
-    11. "What is a base url?" - www.google.com
+    - "Where do you want execute your test?". - on my local machine
+    - "What framework do you want to use?" - mocha
+    - "Shall i install framework udapter to you?" - Yes
+    - "Where are you test specs located?" - ./test
+    - "Which report do you want to use?" - spec
+    - "Shall i install reporter framework?"  - yes
+    - "Do you want to add a service to your test setup?" - selenium-standalone
+    - "Shall i install a service?" - yes
+    - "Level of logging?" - command
+    - "In which directory should screenshots gets saved if a command falls?" - ./errorShots
+    - "What is a base url?" - www.google.com
 
 7. When you put all setting you should see wdio.conf.js file. This file contains all setting for webdriverIO.
 
@@ -50,7 +50,7 @@ Open your wdio.conf.js file. Please, make attention on points below:
 services: ['selenium-standalone']
 ```
 
-9. Plase, add timeout property into mocha setting, because by default mocha give you 10000 ms for each test.
+9. Please, add timeout property into mocha setting, because by default mocha give you 10000 ms for each test.
 
 ```javascript
  mochaOpts: {
@@ -100,7 +100,7 @@ describe('webdriver.io api page', function() {
 
 ## Pageobject pattern with webdriverIO
 
-The most concern with webdriverIO - we can't realise pageobject pattern, because all new instances of classes created async.
+The most concern with webdriverIO - we can't implement pageobject pattern, because all new instances of classes created async.
 You can create new page object as object with selectors for particular page. Example:
 
 ```javascript

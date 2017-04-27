@@ -2,14 +2,22 @@
  * Created by mmushko on 11/04/17.
  */
 
-var Google_mail_page = function() {
-	this.compose_button = "//*[contains(text(),'COMPOSE')]";
-	this.recipient_field = "//textarea[@name = 'to']";
-	this.subject_field = "//input[@name = 'subjectbox']";
-	this.content_field = "//div[@aria-label='Message Body']";
-	this.send_button = "//*[contains(text(),'Send')]";
-};
-
-
+var Google_mail_page =  Object.create(null,{
+	compose_button: {get: function() {
+		return browser.element("//*[contains(text(),'COMPOSE')]");
+	}},
+	recipient_field: {get: function() {
+		return browser.element("//textarea[@name = 'to']");
+	}},
+	subject_field: {get: function() {
+		return browser.element("//input[@name = 'subjectbox']");
+	}},
+	content_field: {get: function() {
+		return browser.element("//div[@aria-label='Message Body']");
+	}},
+	send_button: {get: function() {
+		return browser.element("//*[contains(text(),'Send')]");
+	}}
+});
 
 module.exports = Google_mail_page;

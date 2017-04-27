@@ -100,28 +100,45 @@ describe('webdriver.io api page', function() {
 
 ## Pageobject pattern with webdriverIO
 
-The most concern with webdriverIO - we can't implement pageobject pattern, because all new instances of classes created async.
-You can create new page object as object with selectors for particular page. Example:
+You can implement pageobject pattern with WebDriverIO. For this you should a new page object as object with getters for each component on particular page. Example:
 
 ```javascript
-var Yandex_mail_page = function() {
-	this.new_massage = "//a[contains(@title, 'Написать')]";
-	this.recipient_field = "//*[contains(text(),'Кому')]/parent::label/div[3]/div";
-	this.subject_field = "//*[contains(text(),'Тема')]/parent::label//input";
-	this.content_field = "//*[@id = 'cke_editor1']//textarea";
-	this.send_button = "//button[contains(@title, 'Отправить письмо')]";
-};
+var Yandex_mail_page = Object.create(null, {
+
+	new_massage: {get: function() {
+		return browser.element("//a[contains(@title, 'Написать')]");
+	}},
+
+	recipient_field: {get: function() {
+		return browser.element("//*[contains(text(),'Кому')]/parent::label/div[3]/div");
+	}},
+
+	subject_field: {get: function() {
+		return browser.element("//*[contains(text(),'Тема')]/parent::label//input");
+	}},
+
+	content_field: {get: function() {
+		return browser.element("//*[@id = 'cke_editor1']//textarea");
+	}},
+
+	send_button: {get: function() {
+		return browser.element("//button[contains(@title, 'Отправить письмо')]");
+	}}
+});
 
 module.exports = Yandex_mail_page;
 ```
-Here you can see selectors for yandex mail page's object.
+Here you can see components for yandex mail page's object.
 
-In your test you can require you class, create a instance. But be careful, you need create instance only when webpage with objects will be open on browser. Test example with page object
+In your test you can require you page object. But be careful, you need to call your component only when webpage with objects will be open on browser. Test example with page object
 
 ```javascript
 var webdriverio = require('webdriverio');
+var assert = require('assert');
 var Yandex_started_page = require('../pageobjects/yandex_objects/yandex_started_page');
 var Yandex_mail_page = require('../pageobjects/yandex_objects/yandex_mail_page');
+var Google_started_page = require('../pageobjects/google_objects/google_started_page');
+var Google_mail_page = require('../pageobjects/google_objects/google_mail_page');
 var config = require('../test_properties.json');
 
 describe('test yandex mail receive', function() {
@@ -136,31 +153,17 @@ describe('test yandex mail receive', function() {
 		var subject = config.subject;
 		var message = config.message;
 
-		var yandex_started_page = new Yandex_started_page();
-		var yandex_mail_page = new Yandex_mail_page();
+		Yandex_started_page.username_input.setValue(login);
+		Yandex_started_page.password_input.setValue(password);
+		Yandex_started_page.sing_in_button.click();
 
-		var login_field = browser.element(yandex_started_page.login_input);
-		var password_field = browser.element(yandex_started_page.password_input);
-		var sing_in_button = browser.element(yandex_started_page.sing_in_button);
-
-		login_field.setValue(login);
-		password_field.setValue(password);
-		sing_in_button.doubleClick();
-
-		browser.waitForEnabled(yandex_mail_page.new_massage);
-		var new_message_button = browser.element(yandex_mail_page.new_massage);
-		new_message_button.click();
-
-		browser.waitForEnabled(yandex_mail_page.send_button);
-		var recipient_field = browser.element(yandex_mail_page.recipient_field);
-		var subject_field = browser.element(yandex_mail_page.subject_field);
-		var message_field = browser.element(yandex_mail_page.content_field);
-		var send_button = browser.element(yandex_mail_page.send_button);
-
-		recipient_field.setValue(recipient[0]);
-		subject_field.setValue(subject);
-		message_field.setValue(message);
-		send_button.doubleClick();
+		Yandex_mail_page.new_massage.waitForVisible();
+		Yandex_mail_page.new_massage.click();
+		Yandex_mail_page.send_button.waitForVisible();
+		Yandex_mail_page.recipient_field.setValue(recipient[0]);
+		Yandex_mail_page.subject_field.setValue(subject);
+		Yandex_mail_page.content_field.setValue(message);
+		Yandex_mail_page.send_button.doubleClick();
 	});
 });
 ```

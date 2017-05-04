@@ -7,11 +7,13 @@
     "webdriverio": "^4.6.2"
   },
   "devDependencies": {
+    "mocha": "^3.3.0",
     "selenium-standalone": "^6.2.0",
     "wdio-allure-reporter": "^0.1.2",
     "wdio-mocha-framework": "^0.5.9",
     "wdio-selenium-standalone-service": "0.0.8",
-    "webdriverio": "^4.6.2"
+    "webdrivercss": "^1.1.10",
+    "webdriverio": "^4.7.1"
   },
   "scripts": {
     "selenium-start": "./node_modules/.bin/selenium-standalone start",

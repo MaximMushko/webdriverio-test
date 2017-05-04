@@ -7,7 +7,6 @@ First of all, you need to install npm and nodeJS into you local machine.
 
 1. Create new repository or clone repository from gitub
 
-
 2. Install webdriverIO npm package
 ```bash
 $ npm install webdriverio --save-dev

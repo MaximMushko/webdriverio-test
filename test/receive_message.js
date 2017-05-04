@@ -3,6 +3,7 @@
  */
 
 var webdriverio = require('webdriverio');
+var webdrivercss = require('webdrivercss');
 var assert = require('assert');
 var Yandex_started_page = require('../pageobjects/yandex_objects/yandex_started_page');
 var Yandex_mail_page = require('../pageobjects/yandex_objects/yandex_mail_page');
@@ -15,7 +16,7 @@ describe('test yandex mail receive', function() {
 		browser.url(Yandex_started_page.base_url);
 	});
 
-	xit('receive mail test', function() {
+	it('receive mail test', function() {
 		var login = config.yandex.username;
 		var password = config.yandex.password;
 		var recipient = config.recipients;
@@ -32,6 +33,10 @@ describe('test yandex mail receive', function() {
 		Yandex_mail_page.recipient_field.setValue(recipient[0]);
 		Yandex_mail_page.subject_field.setValue(subject);
 		Yandex_mail_page.content_field.setValue(message);
+		browser.webdrivercss("message page", [{
+			elem:"//*[@id = 'cke_editor1']//textarea",
+			name: "message_content"
+		}]);
 		Yandex_mail_page.send_button.doubleClick();
 	});
 });
@@ -41,7 +46,7 @@ describe('test google mail receive', function() {
 		browser.url(Google_started_page.base_url);
 	});
 
-	it('receive mail test', function() {
+	xit('receive mail test', function() {
 		var login = config.google.username;
 		var password = config.google.password;
 		var recipients = config.recipients;
